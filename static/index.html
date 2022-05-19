@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ADA Staking Calculator Web Application Written in Rust</title>
+  </head>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  <body>
+	<form action="/calculate" method="POST" >
+    <textarea name="json" cols="50" rows="12" style="width:100%">
+      {{
+        "ada": 1000,
+        "fetch_price_via_api" : false,
+        "initial_price" : 0.56,
+        "price_yield" : 1.01,
+        "annual_yield" : 0.05,
+        "epoch_in_days" : 5,
+        "years_holding" : 0.5
+      }}
+    </textarea><br>
+    <!--TODO Move Outside Form And Use JQuery-->
+    <input type="checkbox" id="verbose" name="verbose">
+    <label for="verbose">Verbose Output</label>&nbsp;
+    <input type="checkbox" id="graph" name="graph">
+    <label for="graph">Generate SVG Graph</label>&nbsp; 
+    <!--TODO Add CSRF Token To Web Form To Prevent Potential Replay Attack-->
+    <input type="submit" value="View Gainz " style="width:100%">
+  </form>
+  <div class="output" style="overflow-y:scroll;border-style: solid;height:50%;width:100%">
+    {}
+  </div>
+  <script src="/scripts/index.js">
+  </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{
+    "host_or_ip" : "0.0.0.0",
+    "port" : 80,
+    "ada_calc_backend_path" : "C:\\Users\\dlope\\Documents\\ada_calc\\target\\release\\ada_calc.exe"
+}
