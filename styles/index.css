@@ -1,0 +1,20 @@
+#header {
+    text-align: center;
+}
+
+#result {
+    overflow-y:scroll;
+    border-style: solid;
+    border-color: crimson;
+    height:2.8in;
+    width:100%;
+}
+
+#disclaimer {
+    overflow-y:scroll;
+    border-style: solid;
+    border-color: yellow;
+    height:50%;
+    width:100%;
+    text-align: center;
+}

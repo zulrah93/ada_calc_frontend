@@ -3,13 +3,49 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="zulrah93"/>
+    <!-- Favorites Icon Using SVG For Multi Devices Instead Of Rasterization -->
+    <link rel="icon" href="/vectors/favicon.svg" type="image/svg+xml">
+    <!-- Import style sheet to pretty website -->
+    <link href="/styles/index.css" rel="stylesheet">
+    <!--Style sheet used by highlight.js-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    <!--Social Media Meta Information-->
+    <meta property="og:title" content="Cardano Staking Calculator Made In Pure Rust" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/vectors/favicon.svg" />
+    <!--Meta Information Specific to Twitter-->
+    <meta name="twitter:title" content="Cardano Staking Calculator Made In Pure Rust">
+    <!--Specific to Microsoft Browsers-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ADA Staking Calculator Web Application Written in Rust</title>
+    <title>Cardano Staking Calculator Made In Pure Rust</title>
   </head>
+  <!--jQuery 3.6.0-->
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  <!--highlight.js used for the syntax highlighting of the editor feel free to change it for something else-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
   <body>
+  <h1 id="header">Cardano Staking Calculator Made In Pure Rust</h1>
+  <div> 
+    <!--Controlled by jQuery refer to index.js-->
+    Verbose: <input type="checkbox" id="verbose_flag" name="verbose">
+    Generate SVG Graph: <input type="checkbox" id="graph_flag" name="graph"> 
+    <pre> <!--Preformatted tag so we don't have to play with CSS-->
+    <code id="json_editor" contenteditable="true">
+      {{
+        "ada": 1000,
+        "fetch_price_via_api" : false,
+        "initial_price" : 0.56,
+        "price_yield" : 1.01,
+        "annual_yield" : 0.05,
+        "epoch_in_days" : 5,
+        "years_holding" : 0.5
+      }}
+    </code>
+    </pre>
+  </div>
 	<form action="/calculate" method="POST" >
-    <textarea name="json" cols="50" rows="12" style="width:100%">
+    <textarea hidden id="json_view" name="json" cols="50" rows="12" style="width:100%">
       {{
         "ada": 1000,
         "fetch_price_via_api" : false,
@@ -20,18 +56,25 @@
         "years_holding" : 0.5
       }}
     </textarea><br>
-    <!--TODO Move Outside Form And Use JQuery-->
-    <input type="checkbox" id="verbose" name="verbose">
-    <label for="verbose">Verbose Output</label>&nbsp;
-    <input type="checkbox" id="graph" name="graph">
-    <label for="graph">Generate SVG Graph</label>&nbsp; 
+    <!--Will Be Set By jQuery Enable Javascript on Browser-->
+    <input type="hidden" id="verbose" name="verbose" value="false">
+    <input type="hidden" id="graph" name="graph" value="false">
     <!--TODO Add CSRF Token To Web Form To Prevent Potential Replay Attack-->
     <input type="submit" value="View Gainz " style="width:100%">
   </form>
-  <div class="output" style="overflow-y:scroll;border-style: solid;height:50%;width:100%">
+  <div id="result">
     {}
   </div>
   <script src="/scripts/index.js">
   </script>
+  <div id="disclaimer">
+    <p>
+      <h4>⚠️ Privacy Disclaimer ⚠️</h4> 
+    <i id="disclaimer-text">
+        The following results are not considered investment advice. Nor is this an offical Cardano project although please support IOHK. This tool doesn't factor taxes or other important criteria; this should be used as estimation or for looking at a pretty visual graph.
+        No personal data is ever collected and all parts of the application including the backend is open software and free as in freedom. Certain data might be collected in the future for stat purposes; but never any personal information. EU Data Privacy laws are always respected. 
+    </i>
+    </p>
+  </div>
   </body>
 </html>
